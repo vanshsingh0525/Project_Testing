@@ -1,9 +1,7 @@
-package com.ecomtesting.pages.common;
+package com.ecomtesting.pages.member1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import com.ecomtesting.pages.member1.BasePage;
 
 public class HomePage extends BasePage {
 
