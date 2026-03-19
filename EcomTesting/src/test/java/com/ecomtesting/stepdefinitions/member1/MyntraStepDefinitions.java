@@ -4,7 +4,7 @@ package com.ecomtesting.stepdefinitions.member1;
 import org.junit.Assert;
 
 import com.ecomtesting.config.ConfigReader;
-import com.ecomtesting.factory.DriverManager;
+import com.ecomtesting.factory.DriverFactory;
 import com.ecomtesting.pages.common.HomePage;
 import com.ecomtesting.pages.member1.BagPage;
 import com.ecomtesting.pages.member1.ProductDetailsPage;
@@ -23,28 +23,28 @@ public class MyntraStepDefinitions {
 
     private HomePage getHomePage() {
         if (homePage == null) {
-            homePage = new HomePage(DriverManager.getDriver());
+            homePage = new HomePage(DriverFactory.getDriver());
         }
         return homePage;
     }
 
     private SearchResultsPage getSearchResultsPage() {
         if (searchResultsPage == null) {
-            searchResultsPage = new SearchResultsPage(DriverManager.getDriver());
+            searchResultsPage = new SearchResultsPage(DriverFactory.getDriver());
         }
         return searchResultsPage;
     }
 
     private ProductDetailsPage getProductDetailsPage() {
         if (productDetailsPage == null) {
-            productDetailsPage = new ProductDetailsPage(DriverManager.getDriver());
+            productDetailsPage = new ProductDetailsPage(DriverFactory.getDriver());
         }
         return productDetailsPage;
     }
 
     private BagPage getBagPage() {
         if (bagPage == null) {
-            bagPage = new BagPage(DriverManager.getDriver());
+            bagPage = new BagPage(DriverFactory.getDriver());
         }
         return bagPage;
     }

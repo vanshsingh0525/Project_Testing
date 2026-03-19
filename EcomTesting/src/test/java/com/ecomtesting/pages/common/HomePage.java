@@ -3,11 +3,17 @@ package com.ecomtesting.pages.common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.ecomtesting.factory.DriverFactory;
 import com.ecomtesting.pages.member1.BasePage;
+import com.ecomtesting.utils.WaitUtils;
 
 public class HomePage extends BasePage {
 
     private static final By SEARCH_FIELD = By.cssSelector("input[placeholder='Search for products, brands and more']");
+
+    public HomePage() {
+        this(DriverFactory.getDriver());
+    }
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -15,6 +21,11 @@ public class HomePage extends BasePage {
 
     public void open(String url) {
         driver.get(url);
+        WaitUtils.pageReady(driver);
+    }
+
+    public void navigateTo(String url) {
+        open(url);
     }
 
     public void clickSearchField() {

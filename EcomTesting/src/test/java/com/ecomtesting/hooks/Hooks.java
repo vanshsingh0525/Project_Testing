@@ -3,7 +3,7 @@ package com.ecomtesting.hooks;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import com.ecomtesting.factory.DriverManager;
+import com.ecomtesting.factory.DriverFactory;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -13,15 +13,19 @@ public class Hooks {
 
     @Before
     public void beforeScenario() {
-        DriverManager.initDriver();
+        DriverFactory.initializeDriver();
     }
 
     @After
     public void afterScenario(Scenario scenario) {
-        if (scenario.isFailed() && DriverManager.getDriver() != null) {
-            byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+        if (scenario.isFailed()) {
+            try {
+                byte[] screenshot = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", "Failure Screenshot");
+            } catch (Exception ignored) {
+                // Preserve the original test failure when the browser has already been closed.
+            }
         }
-        DriverManager.quitDriver();
+        DriverFactory.quitDriver();
     }
 }
